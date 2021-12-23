@@ -2,7 +2,7 @@ let skorKen = 0;
 let skorPlayer = 0;
 let timeOut = "";
 
-let Ken = document.getElementById("ninja-ken");
+let ken = document.getElementById("ninja-ken");
 
 let splashScreen = document.getElementsByClassName("splash")[0];
 let startGame = document.getElementsByClassName("start")[0];
@@ -37,7 +37,7 @@ gunting.addEventListener("click", () => {
     janken(1);
 });
 
-kertas.addEventListener("click", ()=> {
+kertas.addEventListener("click", () => {
     janken(2);
 });
 
@@ -56,17 +56,17 @@ function janken(tangan) {
 
     switch (jariKen) {
         case 0:
-            Ken.style.backgroundImage = "url(res/ken-batu.png)";
+            ken.style.backgroundImage = "url(ken-batu.png)";
             break;
         case 1:
-            Ken.style.backgroundImage = "url(res/ken-gunting.png)";
+            ken.style.backgroundImage = "url(ken-gunting.png)";
             break;
         default:
-            Ken.style.backgroundImage = "url(res/ken-kertas.png)";
+            ken.style.backgroundImage = "url(ken-kertas.png)";
             break;
     }
 
-    Ken.classList.remove("goyang");
+    ken.classList.remove("goyang");
 
     switch (tangan) {
         case 0:
@@ -75,7 +75,7 @@ function janken(tangan) {
             } else if (jariKen == 1) {
                 result("player");
             } else {
-                result("Ken");
+                result("ken");
             }
             break;
         case 1:
@@ -91,7 +91,7 @@ function janken(tangan) {
             if (jariKen == 0) {
                 result("player");
             } else if (jariKen == 1) {
-                result("Ken");
+                result("ken");
             } else {
                 result("draw");
             }
@@ -103,26 +103,25 @@ function result(who) {
     clearTimeout(timeOut);
 
     switch (who) {
-        case "Ken":
+        case "ken":
             skorKen++;
             localStorage.setItem("skorKen", skorKen);
-            localStorage.setItem("skorKen", skorKen);
             displaySkorKen.innerHTML = skorKen;
-            console.log("Ninja Ken Menang");
+            console.log("Ninja Ken menang");
             break;
         case "player":
             skorPlayer++;
             localStorage.setItem("skorPlayer", skorPlayer);
-            localStorage.setItem("skorPlayer", skorPlayer);
             displaySkorPlayer.innerHTML = skorPlayer;
-            console.log("Anda Menang");
+            console.log("Anda menang");
             break;
         default:
             console.log("Seri");
             break;
     }
-    timeOut = setTimeout(() => {
-        Ken.style.removeProperty("background-image");
-        Ken.classList.add("goyang");
+
+    timeOut = setTimeOut(() => {
+        ken.style.removeProperty("background-image");
+        ken.classList.add("goyang");
     }, 3000);
 }
